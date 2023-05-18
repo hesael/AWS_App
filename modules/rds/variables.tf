@@ -18,3 +18,7 @@ variable "db_pass" {
   description = "MySQL Password"
   type        = string
 }
+variable "private_app_subnet_az1_id" {
+  description = "AZ for the RDS"
+  type        = string
+}
