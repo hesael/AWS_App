@@ -344,7 +344,7 @@ resource "aws_autoscaling_group" "app_server_asg" {
   vpc_zone_identifier = [var.private_app_subnet_az1_id]
 }
 
-
+#
 #######################################################################################
 # All Open Security Group
 #######################################################################################
