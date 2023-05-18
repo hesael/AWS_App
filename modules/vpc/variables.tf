@@ -1,8 +1,4 @@
 # variables for the environment. Can be overide with *.tfvars file
-variable "REGION" {
-  description = "default region"
-  type        = string
-}
 variable "project_name" {
   description = "project name"
   type        = string

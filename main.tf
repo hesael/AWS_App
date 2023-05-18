@@ -1,13 +1,11 @@
 module "vpc" {
   source       = "./modules/vpc"
-  region       = var.REGION
   project_name = var.project_name
   environment  = var.environment
   vpc_cidr     = var.vpc_cidr
 }
 module "network" {
   source                       = "./modules/network"
-  region                       = var.region
   project_name                 = var.project_name
   environment                  = var.environment
   vpc_id                       = module.vpc.vpc_id

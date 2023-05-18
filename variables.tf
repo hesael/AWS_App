@@ -6,10 +6,10 @@ variable "profile" {
   description = "Environment"
   type        = string
 }
-variable "REGION" {
-  description = "AWS Region"
-  type        = string
-}
+# variable "REGION" {
+#   description = "AWS Region"
+#   type        = string
+# }
 variable "project_name" {
   description = "project name"
   type        = string
@@ -26,10 +26,10 @@ variable "AWS_SECRET_KEY" {
   description = "AWS Secret Key"
   type        = string
 }
-variable "TFE_TOKEN" {
-  description = "Terraform Cloud Token"
-  type        = string
-}
+# variable "TFE_TOKEN" {
+#   description = "Terraform Cloud Token"
+#   type        = string
+# }
 
 
 

@@ -219,9 +219,9 @@ resource "aws_security_group" "jenkins_sg" {
 #   program = ["sh", "-c", "echo \"{ \\\"aws_practice_key\\\": \\\"$aws_practice_key\\\" }\""]
 # }
 
-data "aws_key_pair" "aws_practice_key" {
-key_name = "aws_practice_key"
-}
+# data "aws_key_pair" "aws_practice_key" {
+# key_name = "aws_practice_key"
+# }
 
 # App Server
 resource "aws_launch_template" "app_server_launch_template" {

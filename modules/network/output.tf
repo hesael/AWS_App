@@ -70,10 +70,6 @@ output "private_data_subnet_az1_id" {
 output "private_data_subnet_az2_id" {
   value = aws_subnet.private_data_subnet_az2.id
 }
-# export the region
-output "REGION" {
-  value = var.region
-}
 # export the project name
 output "project_name" {
   value = var.project_name

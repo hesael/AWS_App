@@ -46,10 +46,6 @@ variable "public_subnet_az2_cidr" {
     description = "Public Subnet cidr in Availability Zone 2"
     type = string
 }
-variable "REGION" {
-  description = "default region"
-  type        = string
-}
 variable "project_name" {
   description = "project name"
   type        = string
