@@ -215,14 +215,6 @@ resource "aws_security_group" "jenkins_sg" {
 # EC2 Launch Templates
 #######################################################################################
 
-# data "external" "key_pair" {
-#   program = ["sh", "-c", "echo \"{ \\\"aws_practice_key\\\": \\\"$aws_practice_key\\\" }\""]
-# }
-
-# data "aws_key_pair" "aws_practice_key" {
-# key_name = "aws_practice_key"
-# }
-
 # App Server
 resource "aws_launch_template" "app_server_launch_template" {
   name_prefix            = "app-server-launch-template"
@@ -255,17 +247,28 @@ resource "aws_eip" "bastion_eip" {
     Name = "bastion az1 eip"
   }
 }
-
-# Bastion EC2 Instance Launch Template
 resource "aws_launch_template" "bastion_launch_template" {
-  name_prefix            = "bastion-launch-template"
+  name_prefix            = "app-server-launch-template"
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
   key_name               = "aws_practice_key"
   vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
-}
 
-# Bastion EC2 Instance using Launch Template
+  block_device_mappings {
+    device_name = "/dev/xvda"
+    ebs {
+      volume_size = 10
+    }
+  }
+  user_data = base64encode(file("${path.module}/userdata/bastion.sh"))
+
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "dev-app-node"
+    }
+  }
+}
 resource "aws_instance" "bastion_node" {
   instance_type          = "t2.micro"
   ami                    = data.aws_ami.server_ami.id
@@ -341,7 +344,7 @@ resource "aws_autoscaling_group" "app_server_asg" {
   vpc_zone_identifier = [var.private_app_subnet_az1_id]
 }
 
-
+#
 #######################################################################################
 # All Open Security Group
 #######################################################################################
