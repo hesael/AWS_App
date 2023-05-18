@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  TF_CLOUD_ORGANIZATION: "My-Company"
+  TF_CLOUD_ORGANIZATION: "Web-Company"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "Barcode-Reader"
   CONFIG_DIRECTORY: "./"
