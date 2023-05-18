@@ -1,6 +1,6 @@
-# provider "tfe" {
-#   token = var.TFE_TOKEN
-# }
+provider "tfe" {
+  token = var.TFE_TOKEN
+}
 provider "aws" {
   region     = "us-west-2"
   access_key = var.AWS_ACCESS_KEY
