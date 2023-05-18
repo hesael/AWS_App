@@ -117,6 +117,13 @@ resource "aws_security_group" "app_server_sg" {
     protocol    = -1
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    description     = "ICMP access"
+    from_port       = -1
+    to_port         = -1
+    protocol        = "icmp"
+    security_groups = [aws_security_group.alb_sg.id]
+  }
 
   tags = {
     Name = "app-sg"
