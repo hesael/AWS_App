@@ -329,6 +329,7 @@ resource "aws_lb_listener" "app_server" {
 }
 resource "aws_autoscaling_group" "app_server_asg" {
   name             = "app-server-asg"
+  key_name = "aws_practice_key"
   desired_capacity = 2
   min_size         = 2
   max_size         = 10
