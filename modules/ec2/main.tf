@@ -247,7 +247,7 @@ resource "aws_eip" "bastion_eip" {
     Name = "bastion az1 eip"
   }
 }
-esource "aws_launch_template" "bastion_launch_template" {
+resource "aws_launch_template" "bastion_launch_template" {
   name_prefix            = "app-server-launch-template"
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
