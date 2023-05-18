@@ -1,8 +1,3 @@
-# export the region
-output "REGION" {
-  value = var.region
-}
-
 # export the project name
 output "project_name" {
   value = var.project_name
