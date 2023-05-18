@@ -38,7 +38,7 @@ resource "aws_db_instance" "rds_instance" {
   vpc_security_group_ids = [aws_security_group.rds_security_group.id]
 }
 resource "aws_autoscaling_group" "db_server_asg" {
-  name             = "app-server-asg"
+  name             = "db-server-asg"
   desired_capacity = 2
   min_size         = 2
   max_size         = 10
