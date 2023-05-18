@@ -366,6 +366,13 @@ resource "aws_security_group" "all_open" {
     protocol    = -1
     cidr_blocks = ["0.0.0.0/0"]
   }
+    ingress {
+    description     = "ICMP access"
+    from_port       = -1
+    to_port         = -1
+    protocol        = "icmp"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0
