@@ -18,14 +18,14 @@ variable "vpc_cidr" {
   description = "VPC CIDR"
   type        = string
 }
-# variable "AWS_ACCESS_KEY" {
-#   description = "AWS Access Key"
-#   type        = string
-# }
-# variable "AWS_SECRET_KEY" {
-#   description = "AWS Secret Key"
-#   type        = string
-# }
+variable "AWS_ACCESS_KEY" {
+  description = "AWS Access Key"
+  type        = string
+}
+variable "AWS_SECRET_KEY" {
+  description = "AWS Secret Key"
+  type        = string
+}
 # variable "TFE_TOKEN" {
 #   description = "Terraform Cloud Token"
 #   type        = string
