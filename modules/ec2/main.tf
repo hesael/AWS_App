@@ -261,7 +261,7 @@ resource "aws_launch_template" "bastion_launch_template" {
   name_prefix            = "bastion-launch-template"
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
-  key_name               ="aws_practice_key"
+  key_name               = "aws_practice_key"
   vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
 }
 
@@ -329,7 +329,6 @@ resource "aws_lb_listener" "app_server" {
 }
 resource "aws_autoscaling_group" "app_server_asg" {
   name             = "app-server-asg"
-  key_name = "aws_practice_key"
   desired_capacity = 2
   min_size         = 2
   max_size         = 10
