@@ -2,7 +2,6 @@ provider "tfe" {
   token = var.TFE_TOKEN
 }
 provider "aws" {
-  source  = "hashicorp/aws"
   version = "~> 4.0"
   region     = "us-west-2"
   access_key = var.AWS_ACCESS_KEY
