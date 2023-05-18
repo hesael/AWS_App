@@ -1,0 +1,16 @@
+#cloud-config
+packages:
+  - nginx
+
+write_files:
+  - path: /var/www/html/index.html
+    content: |
+      <html>
+      <body>
+        <h1>Hello, World!</h1>
+      </body>
+      </html>
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl start nginx
