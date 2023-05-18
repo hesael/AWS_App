@@ -9,3 +9,5 @@ output "vpc_id" {
 output "environment" {
   value = var.environment
 }
+
+

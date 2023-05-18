@@ -20,11 +20,17 @@ module "ec2" {
   source                     = "./modules/ec2"
   vpc_id                     = module.vpc.vpc_id
   environment                = var.environment
-  # aws_practice_key = var.aws_practice_key
   public_subnet_az1_id       = module.network.public_subnet_az1_id
   private_app_subnet_az1_id  = module.network.private_app_subnet_az1_id
   private_data_subnet_az1_id = module.network.private_data_subnet_az1_id
   private_app_subnet_az2_id  = module.network.private_app_subnet_az2_id
   private_data_subnet_az2_id = module.network.private_data_subnet_az2_id
+}
+module "rds" {
+  source      = "./modules/rds"
+  vpc_id      = module.vpc.vpc_id
+  environment = var.environment
+  db_admin    = var.db_admin
+  db_pass     = var.db_pass
 }
 
