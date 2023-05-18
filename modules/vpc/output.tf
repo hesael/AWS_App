@@ -7,17 +7,6 @@ output "project_name" {
 output "environment" {
   value = var.environment
 }
-
-# export the vpc id
 output "vpc_id" {
   value = aws_vpc.vpc.id
 }
-
-
-
-
-
-
-
-
-
