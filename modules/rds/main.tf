@@ -46,4 +46,5 @@ resource "aws_autoscaling_group" "db_server_asg" {
     id      = aws_launch_template.rds_template.id
     version = "$Latest"
   }
+  vpc_zone_identifier = [var.private_app_subnet_az1_id]
 }
