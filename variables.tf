@@ -3,11 +3,11 @@ variable "environment" {
   type        = string
 }
 variable "profile" {
-  description = "Environment"
+  description = "Profile"
   type        = string
 }
 variable "project_name" {
-  description = "project name"
+  description = "Project Name"
   type        = string
 }
 variable "vpc_cidr" {

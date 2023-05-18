@@ -129,42 +129,7 @@ resource "aws_security_group" "app_server_sg" {
     Name = "app-sg"
   }
 }
-#######################################################################################
-# Database Servers Security Groups
-#######################################################################################
 
-resource "aws_security_group" "database_sg" {
-  name        = "db-sg"
-  description = "enable mysql/aurora access on port 3306"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    description     = "mysql/aurora access"
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-  ingress {
-    description     = "custom access"
-    from_port       = 33062
-    to_port         = 33062
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "db-sg"
-  }
-}
 #######################################################################################
 # CI/CD Security Groups
 #######################################################################################
@@ -386,7 +351,7 @@ resource "aws_security_group" "all_open" {
   }
 }
 ######################################################################################
-# App Testing
+# Public node for Outside Testing
 #######################################################################################
 
 # Test Node in Public Subnet
