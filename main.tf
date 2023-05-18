@@ -32,5 +32,6 @@ module "rds" {
   environment = var.environment
   db_admin    = var.db_admin
   db_pass     = var.db_pass
+  private_app_subnet_az1_id =  module.network.private_app_subnet_az1_id
 }
 
