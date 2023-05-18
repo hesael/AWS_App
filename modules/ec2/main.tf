@@ -269,6 +269,22 @@ resource "aws_launch_template" "bastion_launch_template" {
     }
   }
 }
+resource "aws_instance" "bastion_node" {
+  instance_type          = "t2.micro"
+  ami                    = data.aws_ami.server_ami.id
+  key_name               = "aws_practice_key"
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
+  subnet_id              = var.public_subnet_az1_id
+  user_data              = base64encode(file("${path.module}/userdata/bastion.sh"))
+
+  root_block_device {
+    volume_size = 10
+  }
+
+  tags = {
+    Name = "dev-bastion"
+  }
+}
 
 # Associate EIP with bastion host
 resource "aws_eip_association" "bastion_eip_association" {
