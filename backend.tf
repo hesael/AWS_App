@@ -3,7 +3,7 @@ terraform {
 
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "Web-Company"
+    organization = "ProjectQ2"
     workspaces {
       name = "Barcode-Reader"
     }

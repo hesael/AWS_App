@@ -1,5 +1,5 @@
 provider "tfe" {
-  token = var.TFE_TOKEN
+  token = var.tfe_token
 }
 provider "aws" {
   region     = var.REGION
