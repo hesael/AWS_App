@@ -7,7 +7,7 @@ This project continues the installation via CI/CD environment.
 - [Project Name](#project-name)
   - [Table of Contents](#table-of-contents)
     - [Prerequisites](#prerequisites)
-- [This hey needs to be already in AWS.](#this-hey-needs-to-be-already-in-aws)
+- [This hey needs to be already in AWS, and your local aws config, needs to be sate with same region in here.](#this-hey-needs-to-be-already-in-aws-and-your-local-aws-config-needs-to-be-sate-with-same-region-in-here)
 
 This project infrastructure is already deployed under Amazon Free tier account. 
 
@@ -29,7 +29,7 @@ These will be required, only during initial built. Since all the area already de
 profile        = "Practice"
 project_name   = "Webapp"
 environment    = "dev"
-# This hey needs to be already in AWS.
+# This hey needs to be already in AWS, and your local aws config, needs to be sate with same region in here.
 key_name       = "aws_practice_key"
 region = "us-east-1"
 vpc_cidr       = "10.0.0.0/16"
