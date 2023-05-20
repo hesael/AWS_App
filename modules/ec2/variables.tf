@@ -26,6 +26,10 @@ variable "vpc_id" {
   description = "vpc ID"
   type        = string
 }
+variable "key_name" {
+  description = "Key Pair Name"
+  type        = string
+}
 variable "environment" {
   description = "Environment"
   type        = string

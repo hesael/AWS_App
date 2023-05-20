@@ -24,6 +24,7 @@ module "ec2" {
   source                     = "./modules/ec2"
   vpc_id                     = module.vpc.vpc_id
   environment                = var.environment
+  key_name                   = var.key_name
   public_subnet_az1_id       = module.network.public_subnet_az1_id
   private_app_subnet_az1_id  = module.network.private_app_subnet_az1_id
   private_data_subnet_az1_id = module.network.private_data_subnet_az1_id

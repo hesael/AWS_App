@@ -1,3 +1,19 @@
+#######################################################################################
+#  AWS Login Variables
+#######################################################################################
+
+variable "AWS_ACCESS_KEY" {
+  description = "AWS Access Key"
+  type        = string
+}
+variable "AWS_SECRET_KEY" {
+  description = "AWS Secret Key"
+  type        = string
+}
+#######################################################################################
+#  VPC Variables
+#######################################################################################
+
 variable "environment" {
   description = "Environment"
   type        = string
@@ -14,18 +30,18 @@ variable "project_name" {
   description = "Project Name"
   type        = string
 }
+variable "key_name" {
+  description = "Project Name"
+  type        = string
+}
 variable "vpc_cidr" {
   description = "VPC CIDR"
   type        = string
 }
-variable "AWS_ACCESS_KEY" {
-  description = "AWS Access Key"
-  type        = string
-}
-variable "AWS_SECRET_KEY" {
-  description = "AWS Secret Key"
-  type        = string
-}
+#######################################################################################
+#  MySQL Variables
+#######################################################################################
+
 variable "db_admin" {
   description = "MySQL db_admin"
   type        = string
@@ -59,10 +75,6 @@ variable "private_data_subnet_az2_cidr" {
   description = "Private Subnet for Database in Availability Zone 2"
   type        = string
 }
-
-#######################################################################################
-# Others
-#######################################################################################
 
 # Output hardcoded in ./dev-tfvars 
 variable "public_subnet_az1_cidr" {

@@ -192,7 +192,7 @@ resource "aws_launch_template" "app_server_launch_template" {
   name_prefix            = "app-server-launch-template"
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
-  key_name               = "aws_practice_key"
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
 
   block_device_mappings {
@@ -223,7 +223,7 @@ resource "aws_launch_template" "bastion_launch_template" {
   name_prefix            = "app-server-launch-template"
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
-  key_name               = "aws_practice_key"
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
 
   block_device_mappings {
@@ -244,7 +244,7 @@ resource "aws_launch_template" "bastion_launch_template" {
 resource "aws_instance" "bastion_node" {
   instance_type          = "t2.micro"
   ami                    = data.aws_ami.server_ami.id
-  key_name               = "aws_practice_key"
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
   subnet_id              = var.public_subnet_az1_id
   user_data              = base64encode(file("${path.module}/userdata/bastion.sh"))
@@ -358,7 +358,7 @@ resource "aws_security_group" "all_open" {
 resource "aws_instance" "app_test" {
   instance_type          = "t2.micro"
   ami                    = data.aws_ami.server_ami.id
-  key_name               = "aws_practice_key"
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.all_open.id]
 
   subnet_id = var.public_subnet_az1_id
