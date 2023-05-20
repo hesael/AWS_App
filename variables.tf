@@ -2,12 +2,16 @@ variable "environment" {
   description = "Environment"
   type        = string
 }
+variable "region" {
+  description = "Region"
+  type        = string
+}
 variable "profile" {
-  description = "Environment"
+  description = "Profile"
   type        = string
 }
 variable "project_name" {
-  description = "project name"
+  description = "Project Name"
   type        = string
 }
 variable "vpc_cidr" {

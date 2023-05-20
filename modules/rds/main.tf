@@ -1,17 +1,41 @@
-resource "aws_security_group" "rds_security_group" {
-  name        = "rds-security-group"
-  description = "Security group for RDS"
+#######################################################################################
+# My SQL RDS Security Group
+#######################################################################################
+
+resource "aws_security_group" "mysql_security_group" {
+  name        = "db-sg"
+  description = "enable mysql/aurora access on port 3306"
   vpc_id      = var.vpc_id
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Update with appropriate IP ranges for access
+    description     = "mysql/aurora access"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description     = "custom access"
+    from_port       = 33062
+    to_port         = 33062
+    protocol        = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "db-sg"
   }
 }
 
-resource "aws_launch_template" "rds_template" {
+resource "aws_launch_template" "mysql_rds_template" {
   name          = "rds-launch-template"
   image_id      = data.aws_ami.server_ami.id
   instance_type = "t2.micro"
@@ -26,7 +50,7 @@ resource "aws_launch_template" "rds_template" {
   user_data = base64encode(file("${path.module}/userdata/rds.sh"))
 }
 
-resource "aws_db_instance" "rds_instance" {
+resource "aws_db_instance" "myqsl_rds_instance" {
   engine                 = "mysql"
   instance_class         = "db.t2.micro"
   allocated_storage      = 20
@@ -35,7 +59,7 @@ resource "aws_db_instance" "rds_instance" {
   username               = var.db_admin
   password               = var.db_pass
   publicly_accessible    = true
-  vpc_security_group_ids = [aws_security_group.rds_security_group.id]
+  vpc_security_group_ids = [aws_security_group.mysql_security_group.id]
 }
 resource "aws_autoscaling_group" "db_server_asg" {
   #db 
@@ -44,7 +68,7 @@ resource "aws_autoscaling_group" "db_server_asg" {
   min_size         = 2
   max_size         = 10
   launch_template {
-    id      = aws_launch_template.rds_template.id
+    id      = aws_db_instance.myqsl_rds_instance.id 
     version = "$Latest"
   }
   vpc_zone_identifier = [var.private_app_subnet_az1_id]
