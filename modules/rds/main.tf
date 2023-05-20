@@ -2,7 +2,7 @@
 # My SQL RDS Security Group
 #######################################################################################
 
-resource "aws_security_group" "mysql_security_group" {
+resource "aws_security_group" "database_security_group" {
   name        = "db-sg"
   description = "enable mysql/aurora access on port 3306"
   vpc_id      = var.vpc_id
@@ -35,7 +35,7 @@ resource "aws_security_group" "mysql_security_group" {
   }
 }
 
-resource "aws_launch_template" "mysql_rds_template" {
+resource "aws_launch_template" "database_template" {
   name          = "rds-launch-template"
   image_id      = data.aws_ami.server_ami.id
   instance_type = "t2.micro"
@@ -59,7 +59,7 @@ resource "aws_db_instance" "myqsl_rds_instance" {
   username               = var.db_admin
   password               = var.db_pass
   publicly_accessible    = true
-  vpc_security_group_ids = [aws_security_group.mysql_security_group.id]
+  vpc_security_group_ids = [aws_security_group.database_security_group.id]
 }
 resource "aws_autoscaling_group" "db_server_asg" {
   #db 
