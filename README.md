@@ -7,7 +7,7 @@ This project continues the installation via CI/CD environment.
 - [Project Name](#project-name)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Prerequisites](#prerequisites)
+    - [Prerequisites](#prerequisites)
 
 ## Description
 
