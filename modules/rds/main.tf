@@ -12,7 +12,7 @@ resource "aws_security_group" "mysql_security_group" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -20,7 +20,7 @@ resource "aws_security_group" "mysql_security_group" {
     from_port       = 33062
     to_port         = 33062
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

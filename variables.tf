@@ -2,6 +2,10 @@ variable "environment" {
   description = "Environment"
   type        = string
 }
+variable "region" {
+  description = "Region"
+  type        = string
+}
 variable "profile" {
   description = "Profile"
   type        = string
