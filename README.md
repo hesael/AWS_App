@@ -7,7 +7,7 @@ This project continues the installation via CI/CD environment.
 - [Project Name](#project-name)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-    - [Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
 
 ## Description
 
@@ -48,7 +48,3 @@ private_data_subnet_az1_cidr = "10.0.5.0/24"
 private_data_subnet_az2_cidr = "10.0.6.0/24"
 
 Also, very impotant. A keypair with name aws
-
-
-
-
