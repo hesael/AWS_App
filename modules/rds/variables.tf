@@ -18,7 +18,11 @@ variable "db_pass" {
   description = "MySQL Password"
   type        = string
 }
-variable "private_app_subnet_az1_id" {
-  description = "AZ for the RDS"
+variable "private_data_subnet_az1_id" {
+  description = "Private Subnet in Availability Zone 1"
+  type        = string
+}
+variable "private_data_subnet_az2_id" {
+  description = "Private Subnet in Availability Zone 1"
   type        = string
 }

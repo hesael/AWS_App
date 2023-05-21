@@ -1,3 +1,4 @@
+
 #######################################################################################
 # My SQL RDS Security Group
 #######################################################################################
@@ -35,19 +36,9 @@ resource "aws_security_group" "database_security_group" {
   }
 }
 
-resource "aws_launch_template" "database_template" {
-  name          = "rds-launch-template"
-  image_id      = data.aws_ami.server_ami.id
-  instance_type = "t2.micro"
-
-  block_device_mappings {
-    device_name = "/dev/xvda"
-    ebs {
-      volume_size = 10 # Update with your desired volume size
-    }
-  }
-
-  user_data = base64encode(file("${path.module}/userdata/rds.sh"))
+resource "aws_db_subnet_group" "rds_subnet" {
+  name       = "db-subnet-group"
+  subnet_ids = [var.private_data_subnet_az1_id,var.private_data_subnet_az2_id]
 }
 
 resource "aws_db_instance" "myqsl_rds_instance" {
@@ -60,16 +51,5 @@ resource "aws_db_instance" "myqsl_rds_instance" {
   password               = var.db_pass
   publicly_accessible    = true
   vpc_security_group_ids = [aws_security_group.database_security_group.id]
-}
-resource "aws_autoscaling_group" "db_server_asg" {
-  #db 
-  name             = "db-server-asg"
-  desired_capacity = 2
-  min_size         = 2
-  max_size         = 10
-  launch_template {
-    id      = aws_db_instance.myqsl_rds_instance.id 
-    version = "$Latest"
-  }
-  vpc_zone_identifier = [var.private_app_subnet_az1_id]
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet.name
 }
