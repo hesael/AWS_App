@@ -49,7 +49,7 @@ resource "aws_db_instance" "myqsl_rds_instance" {
   db_name                = "mydatabase"
   username               = var.db_admin
   password               = var.db_pass
-  publicly_accessible    = true
+  publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.database_security_group.id]
   db_subnet_group_name = aws_db_subnet_group.rds_subnet.name
 }
