@@ -74,16 +74,17 @@ resource "aws_security_group" "alb_sg" {
 
 ingress {
   description  = "ICMP"
-  from_port    = -1
-  to_port      = -1
+  from_port    = 0
+  to_port      = 0
   protocol     = "icmp"
   cidr_blocks  = ["0.0.0.0/0"]
 }
 
   egress {
+    description  = "ICMP"
     from_port   = 0
     to_port     = 0
-    protocol    = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -167,8 +168,8 @@ resource "aws_security_group" "app_server_sg" {
   }
   ingress {
     description     = "ICMP access"
-    from_port       = -1
-    to_port         = -1
+    from_port       = 0
+    to_port         = 0
     protocol        = "icmp"
     security_groups = [aws_security_group.alb_sg.id]
   }
@@ -241,7 +242,7 @@ resource "aws_launch_template" "app_server_launch_template" {
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
   key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.app_server_sg.id,aws_security_group.alb_sg.id, aws_security_group.bastion_sg.id]
+  vpc_security_group_ids = [aws_security_group.alb_sg.id, aws_security_group.bastion_sg.id]
 
   block_device_mappings {
     device_name = "/dev/xvda"
@@ -272,7 +273,7 @@ resource "aws_launch_template" "bastion_launch_template" {
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
   key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
 
   block_device_mappings {
     device_name = "/dev/xvda"
