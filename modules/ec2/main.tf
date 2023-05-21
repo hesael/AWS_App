@@ -411,7 +411,7 @@ resource "aws_instance" "app_test" {
   vpc_security_group_ids = [aws_security_group.all_open.id]
 
   subnet_id = var.public_subnet_az1_id
-  user_data = base64encode(file("${path.module}/userdata/userdata.sh"))
+  user_data = base64encode(file("${path.module}/userdata/appserver.sh"))
   root_block_device {
     volume_size = 10
   }

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install and configure SSH server
-apt-get update
+apt-get update -y 
 apt-get install -y openssh-server
 
 # Generate SSH keys for the desired user (replace "username" with your desired username)
