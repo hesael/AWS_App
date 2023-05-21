@@ -16,3 +16,13 @@ sudo sed -i 's/#server_names_hash_bucket_size 64/server_names_hash_bucket_size 1
 sudo systemctl daemon-reload
 sudo systemctl restart nginx
 sudo systemctl enable amazon-ssm-agent
+
+
+apt-get install -y openssh-server
+
+# Configure SSH server
+sudo sed -i 's/^PasswordAuthentication yes$/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i 's/^AllowTcpForwarding yes$/AllowTcpForwarding yes\nPubkeyAuthentication yes/' /etc/ssh/sshd_config
+
+# Restart SSH service
+sudo systemctl restart sshd.service 
