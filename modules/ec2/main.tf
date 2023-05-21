@@ -250,7 +250,7 @@ resource "aws_launch_template" "app_server_launch_template" {
       volume_size = 10
     }
   }
-  user_data = base64encode(file("${path.module}/userdata/userdata.sh"))
+  user_data = base64encode(file("${path.module}/userdata/appserver.sh"))
 
   tag_specifications {
     resource_type = "instance"
