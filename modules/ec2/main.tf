@@ -1,6 +1,54 @@
-#######################################################################################
+######################################################################################
+# IAM Instance Profile
+######################################################################################
+resource "aws_iam_instance_profile" "iam_profile" {
+  name = "app-ec2-${var.environment}-ec2-iam-profile"
+  role = aws_iam_role.role.name
+}
+
+resource "aws_iam_role" "role" {
+  name = "app-ec2-${var.environment}-ec2-role"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+               "Service": "ec2.amazonaws.com"
+            },
+            "Effect": "Allow",
+            "Sid": ""
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_1" {
+  role       = aws_iam_role.role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_3" {
+  role       = aws_iam_role.role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_4" {
+  role       = aws_iam_role.role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMDirectoryServiceAccess"
+}
+resource "aws_iam_role_policy_attachment" "iam_role_policy_attachment_5" {
+  role       = aws_iam_role.role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+}
+
+
+
+
+######################################################################################
 # Application Load Balancer Security Groups
-#######################################################################################
+######################################################################################
 
 # Only Web Ingress Security Group
 resource "aws_security_group" "alb_sg" {
