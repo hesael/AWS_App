@@ -241,7 +241,7 @@ resource "aws_launch_template" "app_server_launch_template" {
   instance_type          = "t2.micro"
   image_id               = data.aws_ami.server_ami.id
   key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.app_server_sg.id, aws_security_group.bastion_sg.id]
+  vpc_security_group_ids = [aws_security_group.app_server_sg.id,aws_security_group.alb_sg, aws_security_group.bastion_sg.id]
 
   block_device_mappings {
     device_name = "/dev/xvda"
