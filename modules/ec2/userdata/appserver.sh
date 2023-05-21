@@ -1,7 +1,7 @@
 #!/bin/bash
-apt-get update
-apt-get install -y nginx
-service nginx start
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo systemctl start nginx
 #Create a working folder
 sudo mkdir /tmp/test_build
 sudo cd /tmp/test_build
